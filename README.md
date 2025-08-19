@@ -60,7 +60,7 @@ This tool is ideal for job seekers, students, and professionals preparing for in
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/yourusername/ai-interview-simulator.git
+    https://github.com/kalviumcommunity/Mockly_Gen_AI.git
     ```
 
 2. Install dependencies:
