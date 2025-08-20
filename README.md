@@ -4,7 +4,7 @@
 **Mockly** is an intelligent application designed to help users practice interviews and improve their communication, technical knowledge, and problem-solving skills.  
 It has two main modes:  
 
-1. **General Chat Mode** – Acts as a conversational AI assistant.  
+1. **General Chat Mode** – Acts as a conversational AI assistant focused on solving interview doubts or guidiing on how to prepare for interviews.  
 2. **Interview Mode** – Voice-based interactive interview tailored to a specific role, generating a detailed performance report at the end.
 
 This tool is ideal for job seekers, students, and professionals preparing for interviews in technology, management, and other domains.
@@ -83,3 +83,4 @@ This tool is ideal for job seekers, students, and professionals preparing for in
     ```bash
     npm run dev
     ```
+
