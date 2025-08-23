@@ -12,6 +12,10 @@ This tool is ideal for job seekers, students, and professionals preparing for in
 
 ## Prompting Techniques
 
+### Zero Shot Prompting
+
+Zero shot prompting is a technique where you ask a language model (like Gemini or GPT) to perform a task or answer a question without providing any examples or demonstrations in the prompt. The model relies solely on its pre-trained knowledge and the instructions you give.
+
 ### One Shot Prompting
 
 Mockly now supports **one shot prompting** in its backend. One shot prompting is a technique where the AI is given a single example Q&A before being asked to answer a new question. This helps guide the AI's response style and context, improving answer relevance and quality.
