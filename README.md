@@ -117,6 +117,20 @@ Compare the candidate's answer to the expected answer. Give a score out of 10 an
 - The backend includes automated tests (e.g., using Jest or Mocha) that run all evaluation samples through the AI and judge prompt, checking if the model's output meets quality standards.
 - This helps ensure consistent, reliable feedback for users and supports ongoing improvements to the AI.
 
+---
+
+### Tokens and Tokenization
+
+Mockly logs the number of tokens used in every AI call. Tokens are the basic units of text that language models process—roughly corresponding to words or word pieces. Monitoring token usage helps optimize costs and performance.
+
+**Example Log:**
+
+```
+[Token Usage] Prompt: 42, Response: 37, Total: 79
+```
+
+This feature is implemented in the backend and prints token counts to the console after each AI call.
+
 ## Features
 
 - **General Chat Mode**
