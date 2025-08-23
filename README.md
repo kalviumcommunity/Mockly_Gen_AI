@@ -71,7 +71,7 @@ This tool is ideal for job seekers, students, and professionals preparing for in
 
 3. Add your AI API key to `.env`:
     ```bash
-    API_KEY=your_api_key_here
+    GEMINI_API_KEY=your_api_key_here
     ```
 
 4. Start the backend server:
