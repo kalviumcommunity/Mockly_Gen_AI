@@ -2,7 +2,7 @@ const fetch = require("node-fetch");
 require("dotenv").config();
 
 // Gemini API config
-const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "API_KEY"; 
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY || "API_KEY";
 const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
 
 // System Prompt (RTFC framework)
@@ -44,3 +44,31 @@ async function getGeminiResponse(role, candidateInput) {
 }
 
 module.exports = { systemPrompt, userPrompt, getGeminiResponse };
+
+// --- One Shot Prompting Utility ---
+/**
+ * Returns a one-shot prompt for the given role and example.
+ * @param {string} role - The interview role (e.g., 'Frontend Developer')
+ * @param {string} exampleQ - Example question
+ * @param {string} exampleA - Example answer
+ * @param {string} userQ - The actual question for the user
+ * @returns {string} One-shot prompt
+ */
+function oneShotPrompt(role, exampleQ, exampleA, userQ) {
+  return `You are an interviewer for the role of ${role}.
+    Here is an example:
+    Q: ${exampleQ}
+    A: ${exampleA}
+    Now, ask the following question and wait for the candidate's answer:
+    Q: ${userQ}`;
+    }
+
+// Example usage (for documentation or integration):
+const prompt = oneShotPrompt(
+  'Frontend Developer',
+  'What is the Virtual DOM in React?',
+  'The Virtual DOM is a lightweight copy of the real DOM that React uses to optimize UI updates.',
+  'Explain the concept of component lifecycle in React.'
+);
+
+module.exports.oneShotPrompt = oneShotPrompt;
