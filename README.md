@@ -69,6 +69,26 @@ Q: How would you optimize a React app for performance?
 
 This technique is implemented in the backend as a utility function and can be used to make interviews more interactive and context-aware.
 
+---
+### Chain of Thought Prompting
+
+Mockly supports **chain of thought prompting** in its backend. Chain of thought prompting is a technique where the AI is encouraged to reason step-by-step, breaking down its thought process before arriving at a final answer. This is especially useful for complex or multi-step interview questions, as it helps the AI provide more transparent and logical responses.
+
+**Example:**
+
+```
+You are an interviewer for the role of Frontend Developer.
+Q: How would you debug a performance issue in a React application?
+A: Let's think step by step.
+First, I would identify the symptoms of the performance issue, such as slow rendering or laggy UI.
+Next, I would use React DevTools to profile the component tree and look for unnecessary re-renders.
+Then, I would check for expensive operations inside render methods or effects.
+Finally, I would optimize the code by memoizing components, using React.PureComponent, or splitting large components.
+In summary, debugging performance in React involves profiling, identifying bottlenecks, and applying targeted optimizations.
+```
+
+This technique is implemented in the backend as a utility function and can be used to encourage the AI to reason step-by-step for any interview question.
+
 ## Features
 
 - **General Chat Mode**
