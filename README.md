@@ -50,6 +50,25 @@ This technique is implemented in the backend as a utility function and can be us
 
 ---
 
+### Dynamic Prompting
+
+Mockly supports **dynamic prompting** in its backend. Dynamic prompting means the AI can generate new prompts or questions based on the candidate's previous answers, performance, or the current context of the interview. This allows for a more adaptive and personalized interview experience.
+
+**Example:**
+
+```
+You are an interviewer for the role of Frontend Developer.
+Here is the conversation so far:
+Q1: What is the Virtual DOM in React?
+A1: The Virtual DOM is a lightweight copy of the real DOM.
+Q2: What are React hooks?
+A2: Hooks let you use state and other features in React.
+Based on the candidate's previous answers, ask a relevant follow-up question.
+Q: How would you optimize a React app for performance?
+```
+
+This technique is implemented in the backend as a utility function and can be used to make interviews more interactive and context-aware.
+
 ## Features
 
 - **General Chat Mode**
