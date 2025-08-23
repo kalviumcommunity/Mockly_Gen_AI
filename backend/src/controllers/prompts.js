@@ -128,6 +128,24 @@ function dynamicPrompt(role, history, nextQ) {
 //   'How would you optimize a React app for performance?'
 // );
 
+/**
+ * Returns a chain of thought prompt for the given role and question.
+ * Encourages the AI to reason step by step before answering.
+ * @param {string} role - The interview role
+ * @param {string} question - The interview question
+ * @returns {string} Chain of thought prompt
+ */
+function chainOfThoughtPrompt(role, question) {
+  return `You are an interviewer for the role of ${role}.\nQ: ${question}\nA: Let's think step by step.`;
+}
+
+// Example usage (for documentation or integration):
+// const cotPrompt = chainOfThoughtPrompt(
+//   'Frontend Developer',
+//   'How would you debug a performance issue in a React application?'
+// );
+
 module.exports.oneShotPrompt = oneShotPrompt;
 module.exports.multiShotPrompt = multiShotPrompt;
 module.exports.dynamicPrompt = dynamicPrompt;
+module.exports.chainOfThoughtPrompt = chainOfThoughtPrompt;
