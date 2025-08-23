@@ -97,5 +97,37 @@ function multiShotPrompt(role, examples, userQ) {
 //   'Explain the concept of component lifecycle in React.'
 // );
 
+/**
+ * Returns a dynamic prompt based on user performance, context, or previous answers.
+ * @param {string} role - The interview role
+ * @param {Array<{q: string, a: string}>} history - Array of previous Q&A
+ * @param {string} nextQ - The next question to ask
+ * @returns {string} Dynamic prompt
+ */
+function dynamicPrompt(role, history, nextQ) {
+  let prompt = `You are an interviewer for the role of ${role}.\n`;
+  if (history && history.length > 0) {
+    prompt += "Here is the conversation so far:";
+    history.forEach((item, idx) => {
+      prompt += `\nQ${idx + 1}: ${item.q}\nA${idx + 1}: ${item.a}`;
+    });
+    prompt +=
+      "\nBased on the candidate's previous answers, ask a relevant follow-up question.";
+  }
+  prompt += `\nQ: ${nextQ}`;
+  return prompt;
+}
+
+// Example usage (for documentation or integration):
+// const dynPrompt = dynamicPrompt(
+//   'Frontend Developer',
+//   [
+//     { q: 'What is the Virtual DOM in React?', a: 'The Virtual DOM is a lightweight copy of the real DOM.' },
+//     { q: 'What are React hooks?', a: 'Hooks let you use state and other features in React.' }
+//   ],
+//   'How would you optimize a React app for performance?'
+// );
+
 module.exports.oneShotPrompt = oneShotPrompt;
 module.exports.multiShotPrompt = multiShotPrompt;
+module.exports.dynamicPrompt = dynamicPrompt;
