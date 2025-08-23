@@ -145,7 +145,38 @@ function chainOfThoughtPrompt(role, question) {
 //   'How would you debug a performance issue in a React application?'
 // );
 
+// --- Evaluation Dataset and Testing Framework Utilities ---
+const { evaluationDataset, judgePrompt } = require("./evaluationDataset");
+
+/**
+ * Runs the evaluation dataset through the AI and judge prompt.
+ * @param {function} aiCall - Function that takes (role, question) and returns a candidate answer (Promise)
+ * @param {function} judgeCall - Function that takes (candidateAnswer, expectedAnswer) and returns a score/justification (Promise)
+ * @returns {Promise<Array>} Evaluation results
+ */
+async function runEvaluation(aiCall, judgeCall) {
+  const results = [];
+  for (const sample of evaluationDataset) {
+    const candidateAnswer = await aiCall(sample.role, sample.question);
+    const judgeInput = judgePrompt(candidateAnswer, sample.expected);
+    const judgeResult = await judgeCall(
+      candidateAnswer,
+      sample.expected,
+      judgeInput
+    );
+    results.push({
+      role: sample.role,
+      question: sample.question,
+      expected: sample.expected,
+      candidateAnswer,
+      judgeResult,
+    });
+  }
+  return results;
+}
+
 module.exports.oneShotPrompt = oneShotPrompt;
 module.exports.multiShotPrompt = multiShotPrompt;
 module.exports.dynamicPrompt = dynamicPrompt;
 module.exports.chainOfThoughtPrompt = chainOfThoughtPrompt;
+module.exports.runEvaluation = runEvaluation;
