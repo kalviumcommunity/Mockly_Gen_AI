@@ -61,14 +61,41 @@ function oneShotPrompt(role, exampleQ, exampleA, userQ) {
     A: ${exampleA}
     Now, ask the following question and wait for the candidate's answer:
     Q: ${userQ}`;
-    }
+}
 
 // Example usage (for documentation or integration):
 const prompt = oneShotPrompt(
-  'Frontend Developer',
-  'What is the Virtual DOM in React?',
-  'The Virtual DOM is a lightweight copy of the real DOM that React uses to optimize UI updates.',
-  'Explain the concept of component lifecycle in React.'
+  "Frontend Developer",
+  "What is the Virtual DOM in React?",
+  "The Virtual DOM is a lightweight copy of the real DOM that React uses to optimize UI updates.",
+  "Explain the concept of component lifecycle in React."
 );
 
+/**
+ * Returns a multi-shot prompt for the given role and multiple examples.
+ * @param {string} role - The interview role (e.g., 'Frontend Developer')
+ * @param {Array<{q: string, a: string}>} examples - Array of example Q&A pairs
+ * @param {string} userQ - The actual question for the user
+ * @returns {string} Multi-shot prompt
+ */
+function multiShotPrompt(role, examples, userQ) {
+  let prompt = `You are an interviewer for the role of ${role}.\nHere are some examples:`;
+  examples.forEach((ex, idx) => {
+    prompt += `\nExample ${idx + 1}:\nQ: ${ex.q}\nA: ${ex.a}`;
+  });
+  prompt += `\nNow, ask the following question and wait for the candidate's answer:\nQ: ${userQ}`;
+  return prompt;
+}
+
+// Example usage (for documentation or integration):
+// const multiPrompt = multiShotPrompt(
+//   'Frontend Developer',
+//   [
+//     { q: 'What is the Virtual DOM in React?', a: 'The Virtual DOM is a lightweight copy of the real DOM that React uses to optimize UI updates.' },
+//     { q: 'What are React hooks?', a: 'Hooks are special functions in React that let you use state and other features without writing a class.' }
+//   ],
+//   'Explain the concept of component lifecycle in React.'
+// );
+
 module.exports.oneShotPrompt = oneShotPrompt;
+module.exports.multiShotPrompt = multiShotPrompt;

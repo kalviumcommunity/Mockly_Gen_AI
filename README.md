@@ -27,7 +27,26 @@ Now, ask the following question and wait for the candidate's answer:
 Q: Explain the concept of component lifecycle in React.
 ```
 
-This technique is implemented in the backend as a utility function and can be used for any role and question pair.
+### Multi Shot Prompting
+
+Mockly also supports **multi shot prompting** in its backend. Multi shot prompting is a technique where the AI is given multiple example Q&A pairs before being asked to answer a new question. This further improves the AI's understanding of the expected answer style and context, especially for more complex or nuanced interview scenarios.
+
+**Example:**
+
+```
+You are an interviewer for the role of Frontend Developer.
+Here are some examples:
+Example 1:
+Q: What is the Virtual DOM in React?
+A: The Virtual DOM is a lightweight copy of the real DOM that React uses to optimize UI updates.
+Example 2:
+Q: What are React hooks?
+A: Hooks are special functions in React that let you use state and other features without writing a class.
+Now, ask the following question and wait for the candidate's answer:
+Q: Explain the concept of component lifecycle in React.
+```
+
+This technique is implemented in the backend as a utility function and can be used for any role and set of example questions.
 
 ---
 
