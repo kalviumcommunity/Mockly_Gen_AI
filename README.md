@@ -70,6 +70,7 @@ Q: How would you optimize a React app for performance?
 This technique is implemented in the backend as a utility function and can be used to make interviews more interactive and context-aware.
 
 ---
+
 ### Chain of Thought Prompting
 
 Mockly supports **chain of thought prompting** in its backend. Chain of thought prompting is a technique where the AI is encouraged to reason step-by-step, breaking down its thought process before arriving at a final answer. This is especially useful for complex or multi-step interview questions, as it helps the AI provide more transparent and logical responses.
@@ -88,6 +89,33 @@ In summary, debugging performance in React involves profiling, identifying bottl
 ```
 
 This technique is implemented in the backend as a utility function and can be used to encourage the AI to reason step-by-step for any interview question.
+
+---
+
+### Evaluation Dataset and Testing Framework
+
+Mockly includes an **evaluation pipeline** to ensure the quality and reliability of AI-generated interview responses. This pipeline uses a dataset of sample questions and expected answers, a judge prompt to compare model output with expected results, and a testing framework to automate evaluation.
+
+**Example Evaluation Dataset (5 samples):**
+
+| Role               | Question                                 | Expected Answer (Summary)                         |
+| ------------------ | ---------------------------------------- | ------------------------------------------------- |
+| Frontend Developer | What is the Virtual DOM in React?        | Lightweight copy of the real DOM for optimization |
+| Frontend Developer | What are React hooks?                    | Functions to use state/features in functional cmp |
+| Backend Developer  | What is REST API?                        | Architectural style for networked applications    |
+| Data Scientist     | What is overfitting in machine learning? | Model fits training data too well, poor generaliz |
+| Product Manager    | How do you prioritize features?          | Based on impact, effort, user needs, business     |
+
+**Judge Prompt Example:**
+
+```
+Compare the candidate's answer to the expected answer. Give a score out of 10 and a brief justification.
+```
+
+**Testing Framework:**
+
+- The backend includes automated tests (e.g., using Jest or Mocha) that run all evaluation samples through the AI and judge prompt, checking if the model's output meets quality standards.
+- This helps ensure consistent, reliable feedback for users and supports ongoing improvements to the AI.
 
 ## Features
 
