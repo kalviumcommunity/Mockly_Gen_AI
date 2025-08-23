@@ -37,6 +37,13 @@ async function getGeminiResponse(role, candidateInput) {
     const aiText =
       data?.candidates?.[0]?.content?.parts?.[0]?.text ||
       "No response from AI.";
+    // Log token usage
+    const promptTokens = countTokens(prompt);
+    const responseTokens = countTokens(aiText);
+    const totalTokens = promptTokens + responseTokens;
+    console.log(
+      `[Token Usage] Prompt: ${promptTokens}, Response: ${responseTokens}, Total: ${totalTokens}`
+    );
     return aiText;
   } catch (error) {
     return `Error: ${error.message}`;
@@ -174,6 +181,21 @@ async function runEvaluation(aiCall, judgeCall) {
   }
   return results;
 }
+
+// --- Tokenization Utility ---
+/**
+ * Simple token counter: splits text by whitespace and punctuation.
+ * For production, use a tokenizer like tiktoken for accurate LLM token counts.
+ * @param {string} text
+ * @returns {number} token count
+ */
+function countTokens(text) {
+  if (!text) return 0;
+  // Split by whitespace and basic punctuation
+  return text.split(/\s+|[.,!?;:()\[\]{}]/).filter(Boolean).length;
+}
+
+module.exports.countTokens = countTokens;
 
 module.exports.oneShotPrompt = oneShotPrompt;
 module.exports.multiShotPrompt = multiShotPrompt;
